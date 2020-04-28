@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <link rel="stylesheet" href="./swiper.min.css">
+  <style>
+    html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 600px;
+      height: 200px;
+      background: #fff;
+    }
+    .swiper-container .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    /* button按钮的设置 */
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 30px; /* 大小设置 */
+      color: #ddd; /* 颜色设置 */
+    }
+    /* 分页器设置 */
+    .swiper-pagination-bullet {
+      height: 4px;
+      width: 16px;
+      margin: 0 10px !important;
+      border-radius: 1px;
+    }
+    .swiper-pagination-bullet-active {
+      background: #fff; /* 颜色设置 */
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" v-for="(item, index) in imgList" :style="{'background-image':'url('+item+')'}" :key="index"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</body>
+<script src="./swiper.min.js"></script>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    imgList: [
+      'http://e.hiphotos.baidu.com/zhidao/pic/item/b64543a98226cffc7a951157b8014a90f703ea9c.jpg',
+      'http://b.zol-img.com.cn/desk/bizhi/image/3/1680x1050/1375753300484.jpg',
+      'http://attach.bbs.miui.com/forum/201410/28/124709kplpwd2hzs2hppf2.jpg',
+      'http://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1349383469671.jpg'
+    ]
+  },
+  mounted () {
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      slidesPerView: 3,
+      // spaceBetween: 30,
+      centeredSlides: true,
+      coverflowEffect: {
+        rotate: 60,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows : true,
+      },
+      autoplay: {
+        delay: 1000,
+        disableOnInteraction: false, // 用户操作后不禁止autoplay
+      },
+      loop : true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  }
+})
+</script>
+</html>
